@@ -81,7 +81,7 @@ resources:
 
 # PCF Environments
 
-- name: pcf-stage
+- name: cf-stage
   type: cf
   source:
     api: ((pcf-stage-api))
@@ -91,7 +91,7 @@ resources:
     space: ((pcf-stage-space))
     skip_cert_check: false
 
-- name: pcf-production
+- name: cf-production
   type: cf
   source:
     api: ((pcf-prod-api))
@@ -192,7 +192,7 @@ jobs:
       pipelinetaskname: deploy-user-to-stage
       deployversion: v1.0
       APP_REPO: git-user
-  - put: pcf-stage
+  - put: cf-stage
     params:
       path: git-user
       manifest: app-manifest-output/manifest.yml  
@@ -252,7 +252,7 @@ jobs:
       pipelinetaskname: deploy-user-to-prod
       deployversion: v1.0 
       APP_REPO: git-user
-  - put: pcf-production
+  - put: cf-production
     params:
       path: git-user
       manifest: app-manifest-output/manifest.yml
